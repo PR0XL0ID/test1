@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name ="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta charset="utf-8"/>
+    <title>Retro Bowl</title>
+    <style>
+        body { background: #0; color:#cccccc; margin: 0px; padding: 0px; border: 0px; }
+        canvas { image-rendering: optimizeSpeed; -webkit-interpolation-mode: nearest-neighbor; -ms-touch-action: none; margin: 0px; padding: 0px; border: 0px; }
+        :-webkit-full-screen #canvas { width: 100%; height: 100%; }
+    </style>
+</head>
+<body>
+    <div class="gm4html5_div_class" id="gm4html5_div_id">
+        <canvas id="canvas" width="853" height="480">
+            <p>Your browser doesn't support HTML5 canvas.</p>
+        </canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        window.SDK_OPTIONS = { gameId: "r2tzpy9cgrn2u4xgzc9z0zbtvxm16mby", onEvent: function(a) { switch (a.name) { case "SDK_GAME_PAUSE": case "SDK_GAME_START": case "SDK_READY": break; } } };
+        (function(a, b, c) { var d = a.getElementsByTagName(b)[0]; a.getElementById(c) || (a = a.createElement(b), a.id = c, a.src = "https://cdn.jsdelivr.net/gh/st39/sdk@main/sdkjs.js", d.parentNode.insertBefore(a, d)) })(document, "script", "gamemonetize-sdk");
+        let isAdShown = false;
+        function onClick(e) {
+            if (!isAdShown && typeof sdk !== 'undefined' && typeof sdk.showBanner === 'function') {
+                sdk.showBanner();
+                isAdShown = true;
+            }
+            if (typeof init === 'function' && !isAdShown) {
+                init();
+            }
+        }
+        window.addEventListener("click", onClick);
+    </script>
+    <script>(function() {
+        function fin(ok) {
+            window.PokiSDK_OK = ok;
+            GameMaker_Init(); 
+        }
+        window.addEventListener("load", function(_) {
+            if (window.PokiSDK) {
+                PokiSDK.init().then(function() { fin(true); }).catch(function() { fin(false); });
+            } else {
+                window.PokiSDK = null;
+                fin(false);
+            }
+        });
+    })();</script>
+</body>
+</html>
